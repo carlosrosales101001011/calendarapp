@@ -27,9 +27,21 @@ export const calendarSlice = createSlice({
                   state.event.push(payload)
                   //Limpiando la nota
                   state.activeEvent= null;
+                },
+                onUpdateEvent: (state, {payload})=>{ 
+                  state.event = state.event.map(e=>{
+                    if ( e._id === payload._id  ){
+                      return payload;
+                    }
+                    return e;
+                  })
+                },
+                onDeleteEvent: (state)=>{
+                  state.event = state.event.filter(e=>e._id !== state.activeEvent._id)
+                  state.activeEvent= null;
                 }
             }
         })
 
-export const { onSetActiveEvent, onAddNewEvent } = calendarSlice.actions
+export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } = calendarSlice.actions
 
