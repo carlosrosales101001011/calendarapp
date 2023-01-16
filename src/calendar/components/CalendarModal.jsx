@@ -29,7 +29,7 @@ export const CalendarModal = () => {
 
     const { isDateModalOpen, closeDateModal } = useUiStore()
     const [formSubmitted, setformSubmitted] = useState(false)
-    const {activeEvent} = useCalendarStore()
+    const {activeEvent, startSavingEvent} = useCalendarStore()
     
     const [formValues, setformValues] = useState({
         title: 'Carlos',
@@ -69,7 +69,7 @@ export const CalendarModal = () => {
         console.log('cerrando');
         closeDateModal()
     }
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault()
         setformSubmitted(true)
         const different = differenceInSeconds(formValues.end, formValues.start)
@@ -81,6 +81,10 @@ export const CalendarModal = () => {
             return;
         }
         console.log(formValues);
+        
+        await startSavingEvent(formValues)
+        closeDateModal()
+        setformSubmitted(false)
     
     }
 

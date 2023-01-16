@@ -22,8 +22,14 @@ export const calendarSlice = createSlice({
             reducers: {
                 onSetActiveEvent:(state, {payload})=>{
                   state.activeEvent=  payload
+                },
+                onAddNewEvent:(state, {payload})=>{
+                  state.event.push(payload)
+                  //Limpiando la nota
+                  state.activeEvent= null;
                 }
             }
         })
-export const { onSetActiveEvent } = calendarSlice.actions
+
+export const { onSetActiveEvent, onAddNewEvent } = calendarSlice.actions
 
