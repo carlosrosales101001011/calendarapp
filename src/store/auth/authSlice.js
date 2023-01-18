@@ -16,7 +16,15 @@ import { createSlice } from '@reduxjs/toolkit'
                 state.status = 'authenticated',
                 state.user = payload,
                 state.errorMessage = undefined
+            },
+            onLogout: (state, {payload})=>{
+               state.status = 'not-authenticated',
+               state.user = {},
+               state.errorMessage = payload
+            },
+            clearErrorMessage: ()=>{
+               state.errorMessage = undefined;
             }
          }
          })
-export const { increment } = authSlice.actions
+export const { onChecking, onLogin, onLogout, clearErrorMessage } = authSlice.actions
