@@ -22,7 +22,7 @@ import { createSlice } from '@reduxjs/toolkit'
                state.user = {},
                state.errorMessage = payload
             },
-            clearErrorMessage: ()=>{
+            clearErrorMessage: (state)=>{
                state.errorMessage = undefined;
             }
          }
